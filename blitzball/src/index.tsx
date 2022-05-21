@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
+import './output.css'
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import * as THREE from "three";
@@ -8,9 +9,9 @@ import { StlViewer } from "./stl-viewer";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+
     <StlViewer />
-  </React.StrictMode>
+
 );
 
 // If you want to start measuring performance in your app, pass a function

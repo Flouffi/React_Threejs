@@ -3,6 +3,8 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { BufferGeometryUtils } from "three/examples/jsm/utils/BufferGeometryUtils";
 import pathToStl from "./blitzball_whole.stl";
+import pathToVideo from "./bg.mp4";
+
 import TreeSTLLoader from "three-stl-loader";
 
 
@@ -20,24 +22,24 @@ const imageLoader = new THREE.ImageLoader();
  * @param {*} param0
  */
 
-function initEnvironment({ scene, imageSrc }) {
-  const sphere = new THREE.SphereGeometry(750, 64, 64);
-  sphere.scale(-1, 1, 1);
+// function initEnvironment({ scene, imageSrc }) {
+//   const sphere = new THREE.SphereGeometry(750, 64, 64);
+//   sphere.scale(-1, 1, 1);
 
-  const texture = new THREE.Texture();
+//   const texture = new THREE.Texture();
 
-  const material = new THREE.MeshBasicMaterial({
-    map: texture,
+//   const material = new THREE.MeshBasicMaterial({
+//     map: texture,
 
-  });
+//   });
 
-  imageLoader.load(imageSrc, (image) => {
-    texture.image = image;
-    texture.needsUpdate = true;
-  });
+//   imageLoader.load(imageSrc, (image) => {
+//     texture.image = image;
+//     texture.needsUpdate = true;
+//   });
 
-  scene.add(new THREE.Mesh(sphere, material));
-}
+//   scene.add(new THREE.Mesh(sphere, material));
+// }
 
 function createAnimate({ scene, camera, renderer }) {
   const triggers = [];
@@ -71,8 +73,9 @@ function createAnimate({ scene, camera, renderer }) {
 export class StlViewer extends React.Component {
   componentDidMount() {
     const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xf5f5f5);
     const camera = new THREE.PerspectiveCamera(
-      750,
+      345,
       window.innerWidth / window.innerHeight,
       10,
       100000
@@ -101,17 +104,17 @@ export class StlViewer extends React.Component {
       });
     });
 
-    initEnvironment({ scene });
+    // initEnvironment({ scene });
 
     const renderer = new THREE.WebGLRenderer();
 
-    const controls = new OrbitControls(camera, renderer.domElement);
+    // const controls = new OrbitControls(camera, renderer.domElement);
 
-    controls.maxDistance = 700;
-    controls.minDistance = 100;
+    // controls.maxDistance = 700;
+    // controls.minDistance = 100;
 
-    const geometry = new THREE.BoxGeometry(10, 10, 10);
-    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00,opacity:0.5,wireframe:true });
+    // const geometry = new THREE.BoxGeometry(10, 10, 10);
+    // const material = new THREE.MeshBasicMaterial({ color: 0x00ff00,opacity:0.5,wireframe:true });
 
 
     /**
@@ -137,11 +140,30 @@ export class StlViewer extends React.Component {
 
     const animate = createAnimate({ scene, camera, renderer });
 
-    camera.position.z = 200;
+    camera.position.z = 300;
 
     animate.animate();
+
+
   }
+
+  
   render() {
-    return <div ref={(ref) => (this.mount = ref)} />;
+    const style = {
+      'display': 'inline-block',
+      'line-height': '0em',
+     'padding-bottom': '0.5em',
+      'margin-bottom': '0.5em'
+    }
+
+
+    return <div>
+                    <h1 className="text-7xl ml-5 mt-5 mb-5"> 
+                      <span>Blitzball </span>
+                      <br></br>
+                      <mark style={style}> fan page</mark>
+                      </h1>
+      <div ref={(ref) => (this.mount = ref)} />      
+      </div>
   }
 }
