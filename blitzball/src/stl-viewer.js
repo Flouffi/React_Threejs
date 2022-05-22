@@ -73,7 +73,7 @@ function createAnimate({ scene, camera, renderer }) {
 export class StlViewer extends React.Component {
   componentDidMount() {
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xf5f5f5);
+    scene.background = new THREE.Color(0x000000);
     const camera = new THREE.PerspectiveCamera(
       345,
       window.innerWidth / window.innerHeight,
@@ -149,20 +149,37 @@ export class StlViewer extends React.Component {
 
   
   render() {
-    const style = {
+    const styleTitle = {
       'display': 'inline-block',
-      'line-height': '0em',
-     'padding-bottom': '0.5em',
+      'line-height': '0.1em',
+     'padding-bottom': '0.4em',
+      'margin-bottom': '0.5em',
+      'color': '#ffffff'
+    }
+
+    const hr = {
+      'margin-left': '15px',
+      'margin-right': '10%',
+      'border': '1px solid white',
+    }
+
+    const p = {
+      'display': 'inline-block',
+      'line-height': '0.2em',
+      'padding-bottom': '0.4em',
       'margin-bottom': '0.5em'
     }
 
 
+
     return <div>
-                    <h1 className="text-7xl ml-5 mt-5 mb-5"> 
-                      <span>Blitzball </span>
+                    <h1 className="text-7xl ml-5 mt-5 mb-5 text-[#ffffff]"> 
+                      <mark style={styleTitle}>Blitzball  </mark>
                       <br></br>
-                      <mark style={style}> fan page</mark>
+                      <mark style={styleTitle}> 3D WIKIPEDIA </mark>
                       </h1>
+                      {/* <p className="text-5xl ml-5 mt-5 mb-5">Welcome to the wikipedia for all the blitzball fan !</p> */}
+                      <hr style={hr}></hr>
       <div ref={(ref) => (this.mount = ref)} />      
       </div>
   }
